@@ -1,0 +1,20 @@
+/* Similar style as Cards */
+.user-reviews {
+  padding: 4rem;
+  background: #fff;
+}
+
+.user-reviews h1 {
+  text-align: center;
+}
+
+.user-reviews__container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: start;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1120px;
+  width: 90%;
+  margin: 0 auto;
+}

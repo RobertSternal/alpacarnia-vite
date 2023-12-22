@@ -1,0 +1,63 @@
+/* Similar style as Cards */
+.review-item {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  width: 40%;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-rating {
+  margin-top: 0.5rem;
+  color: #f4c150; /* Gold color for stars */
+}
+
+.review-content {
+  margin-top: 1rem;
+}
+
+.review-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .review-item {
+    width: 90%;
+  }
+  .review-image {
+    max-width: 90%;
+  }
+}
+
+/* Tablet devices */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .review-item {
+    width: 70%;
+  }
+  .review-image {
+    max-width: 90%;
+  }
+}
+
+/* Desktop devices */
+@media (min-width: 1025px) {
+  .review-item {
+    width: 40%;
+  }
+  .review-image {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,25 @@
+
+
+.alpaca-info {
+  padding: 2rem;
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  /* background: #fff; */
+  border-radius: 10px;
+  box-shadow: 0px 1px 14px 0px rgba(180, 180, 180, 1);
+  margin: 2rem auto;
+  max-width: 80%;
+  color: whitesmoke;
+  /*border:1px solid rgba(0, 0, 0, 0.15);*/
+}
+
+.alpaca-info h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.alpaca-info p {
+  text-align: justify;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
