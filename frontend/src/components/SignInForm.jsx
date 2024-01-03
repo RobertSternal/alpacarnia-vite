@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../App.css";
 import "./SignInForm.css";
+import "./OAuth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -69,12 +70,12 @@ function SignInForm() {
           className="password"
           onChange={handleChange}
         />
-        <button disabled={loading}>
+        <button disabled={loading} className="signin-button">
           {loading ? "Ładowanie..." : "Zaloguj się"}
         </button>
         <OAuth />
       </form>
-      <div className="signin-link">
+      <div className="signup-link-div">
         <p>Nie masz konta?</p>
         <Link to={"/sign-up"}>
           <span className="signin-link-span">Zarejestruj się</span>

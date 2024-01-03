@@ -1,0 +1,7 @@
+.oauth-button {
+  background-color: rgb(28, 27, 27);
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}

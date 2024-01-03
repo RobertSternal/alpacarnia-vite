@@ -1,0 +1,56 @@
+.profile-title {
+  font-size: xx-large;
+  text-align: center;
+  margin: 32px 0;
+}
+input {
+  background-color: #efefef;
+  border: 1px;
+  padding: 12px;
+  border-radius: 6px;
+}
+.username {
+  border: 1px;
+  padding: 12px;
+  border-radius: 6px;
+}
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.profile-container {
+  padding: 12px;
+  max-width: 512px;
+  margin: 0 auto;
+}
+.update-button {
+  background-color: rgb(28, 27, 27);
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+.signup-button:hover {
+  opacity: 0.9;
+}
+.signup-button:disabled {
+  opacity: 0.75;
+}
+.red-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+.signin-link-span {
+  color: black;
+}
+.profile-img {
+  border-radius: 999px;
+  height: 112px;
+  width: 112px;
+  object-fit: cover;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 8px;
+}

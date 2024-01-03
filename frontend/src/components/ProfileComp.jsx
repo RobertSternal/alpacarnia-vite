@@ -101,8 +101,8 @@ export default function ProfileComp() {
     }
   };
   return (
-    <div>
-      <h1>Profile</h1>
+    <div className="profile-container">
+      <h1 className="profile-title">Profile</h1>
       <form className="profile-form" onSubmit={handleSubmit}>
         <input
           type="file"
@@ -115,6 +115,7 @@ export default function ProfileComp() {
           onClick={() => fileRef.current.click()}
           src={formData.pfpicture || currentUser.pfpicture}
           alt="profil"
+          className="profile-img"
         />
         <p>
           {uploadError ? (
@@ -150,7 +151,7 @@ export default function ProfileComp() {
           id="password"
           onChange={handleChange}
         />
-        <button disabled={loading}>
+        <button disabled={loading} className="update-button">
           {loading ? "Ładowanie..." : "Zaktualizuj dane"}
         </button>
       </form>

@@ -80,7 +80,11 @@ function Navbar() {
           </ul>
           <Link to="/profile">
             {currentUser ? (
-              <img src={currentUser.pfpicture} alt="profil" />
+              <img
+                src={currentUser.pfpicture}
+                alt="profil"
+                className="navbar-img"
+              />
             ) : (
               /*<img src={currentUser.pfpicture} alt="nieprofil" /> */
               <Button buttonStyle="btn-outline">DOŁĄCZ</Button>

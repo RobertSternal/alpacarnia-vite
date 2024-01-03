@@ -40,7 +40,7 @@ export default function OAuth() {
     }
   };
   return (
-    <button onClick={handleClick} type="button">
+    <button onClick={handleClick} className="oauth-button" type="button">
       Continue with Google
     </button>
   );

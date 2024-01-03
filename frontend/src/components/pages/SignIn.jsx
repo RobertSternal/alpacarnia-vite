@@ -6,7 +6,6 @@ export default function SignIn() {
   return (
     <>
       <SignInForm />
-      signin
     </>
   );
 }

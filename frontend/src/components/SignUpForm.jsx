@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "../App.css";
 import "./SignUpForm.css";
+import "./OAuth.css";
 import { Link, useNavigate } from "react-router-dom";
-import OAuth from "./OAuth"
+import OAuth from "./OAuth";
 
 function SignUpForm() {
   const [formData, setFormData] = useState({});
@@ -73,12 +74,12 @@ function SignUpForm() {
           className="password"
           onChange={handleChange}
         />
-        <button disabled={loading}>
+        <button disabled={loading} className="signup-button">
           {loading ? "Ładowanie..." : "Utwórz konto"}
         </button>
         <OAuth />
       </form>
-      <div className="signin-link">
+      <div className="signin-link-div">
         <p>Masz konto?</p>
         <Link to={"/sign-in"}>
           <span className="signin-link-span">Zaloguj się</span>
