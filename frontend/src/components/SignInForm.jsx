@@ -33,6 +33,7 @@ function SignInForm() {
         `${process.env.REACT_APP_SERVER}/server/auth/signin`,
         {
           method: "POST",
+          credentials: "include",
           mode: "cors",
           headers: {
             "Content-Type": "application/json",
