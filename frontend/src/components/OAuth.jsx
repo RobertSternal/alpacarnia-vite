@@ -34,7 +34,6 @@ export default function OAuth() {
       const data = await res.json();
       dispatch(signInSuccess(data));
       navigate("/");
-      console.log("POLACY NIC SIE NIE STAAAAŁOOOO");
     } catch (error) {
       console.log("Nie można zalogować się na konto Google", error);
     }

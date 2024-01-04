@@ -17,6 +17,7 @@ mongoose
     console.log(err);
   });
 const app = express();
+app.use(cookieParser());
 app.use(
   cors({
     origin: "http://localhost:8080",
@@ -25,7 +26,6 @@ app.use(
 );
 app.use(express.json());
 
-app.use(cookieParser());
 /*app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });*/

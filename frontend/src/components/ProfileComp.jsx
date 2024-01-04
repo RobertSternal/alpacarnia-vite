@@ -13,6 +13,9 @@ import {
   updateUserStart,
   updateUserFailure,
   updateUserSuccess,
+  signOutUserStart,
+  signOutUserFailure,
+  signOutUserSuccess,
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
@@ -100,6 +103,21 @@ export default function ProfileComp() {
       dispatch(updateUserFailure(error.message));
     }
   };
+  const handleSignOut = async () => {
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch("/api/auth/signout");
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(signOutUserFailure(data.message));
+        return;
+      }
+      dispatch(signOutUserSuccess(data));
+    } catch (error) {
+      //dispatch(signOutUserFailure(data.message));
+      console.log("error??");
+    }
+  };
   return (
     <div className="profile-container">
       <h1 className="profile-title">Profile</h1>
@@ -157,7 +175,9 @@ export default function ProfileComp() {
       </form>
       <div className="red-buttons">
         <span className="delete">Usuń konto</span>
-        <span className="logout">Wyloguj się</span>
+        <span className="logout" onClick={handleSignOut}>
+          Wyloguj się
+        </span>
       </div>
       <p className="profile-message-error">{error ? error : ""}</p>
       <p className="profile-message-success">

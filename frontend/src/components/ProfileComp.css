@@ -54,3 +54,6 @@ input {
   align-self: center;
   margin-top: 8px;
 }
+.logout {
+  cursor: pointer;
+}
