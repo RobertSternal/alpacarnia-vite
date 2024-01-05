@@ -98,7 +98,7 @@ export default function ProfileComp() {
         return;
       }
       dispatch(updateUserSuccess(data));
-      updateSuccess(true);
+      setUpdateSuccess(true);
     } catch (error) {
       dispatch(updateUserFailure(error.message));
     }
@@ -107,6 +107,12 @@ export default function ProfileComp() {
     try {
       dispatch(signOutUserStart());
       const res = await fetch("/api/auth/signout");
+
+      // Check if the response was successful
+      if (!res.ok) {
+        throw new Error(`Server responded with status: ${res.status}`);
+      }
+
       const data = await res.json();
       if (data.success === false) {
         dispatch(signOutUserFailure(data.message));
@@ -114,8 +120,8 @@ export default function ProfileComp() {
       }
       dispatch(signOutUserSuccess(data));
     } catch (error) {
-      //dispatch(signOutUserFailure(data.message));
-      console.log("error??");
+      console.log("Sign out error:", error);
+      dispatch(signOutUserFailure(error.message));
     }
   };
   return (
@@ -175,7 +181,7 @@ export default function ProfileComp() {
       </form>
       <div className="red-buttons">
         <span className="delete">Usuń konto</span>
-        <span className="logout" onClick={handleSignOut}>
+        <span onClick={handleSignOut} className="logout">
           Wyloguj się
         </span>
       </div>
