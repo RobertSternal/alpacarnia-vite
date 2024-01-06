@@ -13,8 +13,6 @@ export default function OAuth() {
       const authProvider = new GoogleAuthProvider();
       const auth = getAuth(app);
       const result = await signInWithPopup(auth, authProvider);
-      console.log(result);
-      console.log(process.env.REACT_APP_FIREBASE_API);
 
       const res = await fetch(
         `${process.env.REACT_APP_SERVER}/server/auth/oauth`,
@@ -40,7 +38,7 @@ export default function OAuth() {
   };
   return (
     <button onClick={handleClick} className="oauth-button" type="button">
-      Continue with Google
+      Kontynuuj z Google
     </button>
   );
 }

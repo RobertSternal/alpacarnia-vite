@@ -16,6 +16,9 @@ import {
   signOutUserStart,
   signOutUserFailure,
   signOutUserSuccess,
+  deleteUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
 } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
@@ -106,12 +109,16 @@ export default function ProfileComp() {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const res = await fetch("/api/auth/signout");
-
-      // Check if the response was successful
-      if (!res.ok) {
-        throw new Error(`Server responded with status: ${res.status}`);
-      }
+      //`${process.env.REACT_APP_SERVER}/server/auth/signin`
+      const res = await fetch(
+        `${process.env.REACT_APP_SERVER}/server/auth/signout`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = await res.json();
       if (data.success === false) {
@@ -122,6 +129,27 @@ export default function ProfileComp() {
     } catch (error) {
       console.log("Sign out error:", error);
       dispatch(signOutUserFailure(error.message));
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      dispatch(deleteUserStart());
+      const res = await fetch(
+        `${process.env.REACT_APP_SERVER}/server/user/delete/${currentUser._id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
     }
   };
   return (
@@ -180,7 +208,9 @@ export default function ProfileComp() {
         </button>
       </form>
       <div className="red-buttons">
-        <span className="delete">Usuń konto</span>
+        <span onClick={handleDelete} className="delete">
+          Usuń konto
+        </span>
         <span onClick={handleSignOut} className="logout">
           Wyloguj się
         </span>

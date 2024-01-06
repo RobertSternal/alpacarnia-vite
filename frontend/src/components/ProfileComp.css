@@ -57,3 +57,6 @@ input {
 .logout {
   cursor: pointer;
 }
+.delete {
+  cursor: pointer;
+}

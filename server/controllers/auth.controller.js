@@ -39,13 +39,9 @@ export const signin = async (req, res, next) => {
 
 export const oauth = async (req, res, next) => {
   try {
-    res.cookie("xd", "xd", { httpOnly: true });
-    console.log("Respnse headers:", res.getHeaders());
-
     const user = await User.findOne({ email: req.body.email });
     if (user) {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
-      //console.log("Token:::: ", token);
       const { password: pass, ...userInfo } = user._doc;
       console.log("Ustawiam ciasteczko", token);
       res
