@@ -17,9 +17,6 @@ function SignUpForm() {
     });
   };
 
-  const a2nce = `${process.env.REACT_APP_SERVER}/auth/signup`;
-  console.log(a2nce);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

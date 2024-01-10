@@ -1,0 +1,47 @@
+.booking-title {
+  font-size: xx-large;
+  text-align: center;
+  margin: 32px 0;
+}
+input {
+  background-color: #efefef;
+  border: 1px;
+  padding: 12px;
+  border-radius: 6px;
+}
+.username {
+  border: 1px;
+  padding: 12px;
+  border-radius: 6px;
+}
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.booking-container {
+  padding: 12px;
+  max-width: 512px;
+  margin: 0 auto;
+}
+.signup-button {
+  background-color: rgb(28, 27, 27);
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+.signup-button:hover {
+  opacity: 0.9;
+}
+.signup-button:disabled {
+  opacity: 0.75;
+}
+.signin-link-div {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+.signin-link-span {
+  color: black;
+}
