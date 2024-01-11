@@ -56,16 +56,16 @@ function Navbar() {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Produkty
+                Oferta
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                to="/products"
+                to="/booking"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Oferta
+                Zarezerwuj
               </Link>
             </li>
             <li className="nav-item">

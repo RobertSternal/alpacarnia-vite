@@ -15,7 +15,7 @@ function Cards({ onSelectOffer }) {
     },
     {
       src: "images/alp2.jpg",
-      text: "Spacer z Alpaką",
+      text: "Zdjęcie",
       label: "Najlepsza cena",
       offer: "Zdjęcie",
     },
