@@ -24,17 +24,17 @@ input {
   max-width: 512px;
   margin: 0 auto;
 }
-.signup-button {
+.booking-button {
   background-color: rgb(28, 27, 27);
   color: white;
   padding: 12px;
   border-radius: 6px;
   text-transform: uppercase;
 }
-.signup-button:hover {
+.booking-button:hover {
   opacity: 0.9;
 }
-.signup-button:disabled {
+.booking-button:disabled {
   opacity: 0.75;
 }
 .signin-link-div {
@@ -44,4 +44,16 @@ input {
 }
 .signin-link-span {
   color: black;
+}
+select {
+  background-color: #efefef;
+  border: 1px;
+  padding: 12px;
+  border-radius: 6px;
+}
+.time {
+  color: #757589;
+}
+.date {
+  color: #757589;
 }

@@ -16,6 +16,7 @@ function BookingForm() {
     date: "",
     time: "",
   });
+  const [error, setError] = useState(null);
 
   const timeSlots = [
     "9:00",
@@ -51,12 +52,15 @@ function BookingForm() {
       );
       const data = await res.json();
       if (data.success === false) {
+        setError(data.message);
         console.log("error dziwny");
         return;
       }
+      setError(null);
       navigate("/");
     } catch (error) {
-      console.error("Error during form submission: ", error);
+      setError(error.message);
+      console.error("Error podczas przesyłania: ", error);
     }
   };
 
@@ -136,6 +140,7 @@ function BookingForm() {
           </span>
         </button>
       </form>
+      {error && <p>{error}</p>}
     </div>
   );
 }
