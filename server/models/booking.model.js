@@ -34,6 +34,9 @@ const bookingSchema = new mongoose.Schema({
   },
 });
 
+// Unique index for date and time to prevent double booking
+bookingSchema.index({ date: 1, time: 1 }, { unique: true });
+
 const Booking = mongoose.model("Booking", bookingSchema);
 
 export default Booking;

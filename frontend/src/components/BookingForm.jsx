@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./BookingForm.css";
@@ -16,6 +16,7 @@ function BookingForm() {
     date: "",
     time: "",
   });
+  const [availableTimeSlots, setAvailableTimeSlots] = useState(null);
   const [error, setError] = useState(null);
 
   const timeSlots = [
@@ -36,6 +37,25 @@ function BookingForm() {
       [e.target.className]: e.target.value,
     });
   };
+
+  const fetchAvailableSlots = async (selectedDate) => {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_SERVER}/server/booking/available-slots/${selectedDate}`
+      );
+      const data = await res.json();
+      setAvailableTimeSlots(data.avaivableSlots);
+    } catch (error) {
+      console.error("Error fetching available data: ", error);
+      setError("Error fetching available slots");
+    }
+  };
+
+  useEffect(() => {
+    if (formData.date) {
+      fetchAvailableSlots(formData.date);
+    }
+  }, [formData.date]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
