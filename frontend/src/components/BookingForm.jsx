@@ -19,7 +19,7 @@ function BookingForm() {
   const [availableTimeSlots, setAvailableTimeSlots] = useState(null);
   const [error, setError] = useState(null);
 
-  const timeSlots = [
+  /*const timeSlots = [
     "9:00",
     "10:00",
     "11:00",
@@ -28,7 +28,7 @@ function BookingForm() {
     "14:00",
     "15:00",
     "16:00",
-  ];
+  ];*/
   const offerSlots = ["Spacer", "Zdjęcie", "Malowanie", "Wycieczka"];
 
   const handleChange = (e) => {
@@ -44,7 +44,8 @@ function BookingForm() {
         `${process.env.REACT_APP_SERVER}/server/booking/available-slots/${selectedDate}`
       );
       const data = await res.json();
-      setAvailableTimeSlots(data.avaivableSlots);
+      console.log("Fetched slots:", data.availableSlots);
+      setAvailableTimeSlots(data.availableSlots);
     } catch (error) {
       console.error("Error fetching available data: ", error);
       setError("Error fetching available slots");
@@ -147,11 +148,12 @@ function BookingForm() {
           <option value="" disabled selected>
             Wybierz godzinę
           </option>
-          {timeSlots.map((slot, index) => (
-            <option key={index} value={slot}>
-              {slot}
-            </option>
-          ))}
+          {availableTimeSlots &&
+            availableTimeSlots.map((slot, index) => (
+              <option key={index} value={slot}>
+                {slot}
+              </option>
+            ))}
         </select>
         <button className="booking-button">
           Zarezerwuj

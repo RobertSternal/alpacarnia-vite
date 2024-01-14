@@ -27,6 +27,9 @@ export const addBooking = async (req, res, next) => {
     });
     res.status(201).json("Rezerwacja została pomyślnie złożona");
   } catch (error) {
+    if (error.code === 11000) {
+      return next(errorHandler(400, "Wybrany termin jest już zajęty"));
+    }
     next(error);
   }
 };
@@ -34,7 +37,7 @@ export const addBooking = async (req, res, next) => {
 export const availableSlots = async (req, res, next) => {
   try {
     const date = req.params.date;
-    const bookedSlots = await Booking.find({ date }).select("time - _id");
+    const bookedSlots = await Booking.find({ date }).select("time -_id");
 
     // Logic to determine available slots based on bookedSlots
     const allSlots = [
