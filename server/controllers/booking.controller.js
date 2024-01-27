@@ -24,12 +24,26 @@ export const addBooking = async (req, res, next) => {
       phone,
       date,
       time,
+      userId: req.user ? req.user.id : null,
     });
     res.status(201).json("Rezerwacja została pomyślnie złożona");
   } catch (error) {
     if (error.code === 11000) {
       return next(errorHandler(400, "Wybrany termin jest już zajęty"));
     }
+    next(error);
+  }
+};
+
+export const getUserBookings = async (req, res, next) => {
+  if (!req.user) {
+    return next(errorHandler(401, "Nie jesteś zalogowany"));
+  }
+  try {
+    const userId = req.user.id;
+    const bookings = await Booking.find({ userId });
+    res.json(bookings);
+  } catch (error) {
     next(error);
   }
 };

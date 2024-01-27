@@ -32,6 +32,11 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: false,
+  },
 });
 
 // Unique index for date and time to prevent double booking

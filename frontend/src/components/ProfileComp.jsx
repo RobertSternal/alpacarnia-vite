@@ -31,6 +31,7 @@ export default function ProfileComp() {
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [bookings, setBookings] = useState([]);
   console.log(formData);
   //console.log(filePer);
   //console.log(file);
@@ -42,6 +43,35 @@ export default function ProfileComp() {
       request.resource.size < 2 * 1024 * 1024 &&
       request.resource.contentType.matches("image/.*")
     */
+  useEffect(() => {
+    const fetchUserBookings = async () => {
+      if (currentUser) {
+        // Only fetch bookings if there's a logged-in user
+        try {
+          const response = await fetch(
+            `${process.env.REACT_APP_SERVER}/server/booking/user/${currentUser._id}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                // Include any necessary authentication headers
+              },
+            }
+          );
+          if (!response.ok) {
+            throw new Error("Failed to fetch bookings");
+          }
+          const data = await response.json();
+          setBookings(data);
+        } catch (error) {
+          console.error("Error fetching bookings:", error);
+        }
+      }
+    };
+
+    fetchUserBookings();
+  }, [currentUser]); // Rerun when currentUser changes
+
   useEffect(() => {
     if (file) {
       handleFileUpload(file);
@@ -219,6 +249,21 @@ export default function ProfileComp() {
       <p className="profile-message-success">
         {updateSuccess ? "Użytkownik został zaktualizowany" : ""}
       </p>
+
+      <div className="bookings-container">
+        <h2>Twoje rezerwacje</h2>
+        {bookings.length > 0 ? (
+          bookings.map((booking) => (
+            <div key={booking._id} className="booking">
+              <p>Date: {booking.date}</p>
+              <p>Time: {booking.time}</p>
+              {/* Display other booking details as needed */}
+            </div>
+          ))
+        ) : (
+          <p>No bookings found</p>
+        )}
+      </div>
     </div>
   );
 }
