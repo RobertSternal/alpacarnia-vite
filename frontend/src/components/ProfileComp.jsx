@@ -52,9 +52,9 @@ export default function ProfileComp() {
             `${process.env.REACT_APP_SERVER}/server/booking/user/${currentUser._id}`,
             {
               method: "GET",
+              credentials: "include",
               headers: {
                 "Content-Type": "application/json",
-                // Include any necessary authentication headers
               },
             }
           );

@@ -36,13 +36,17 @@ export const addBooking = async (req, res, next) => {
 };
 
 export const getUserBookings = async (req, res, next) => {
-  if (!req.user) {
-    return next(errorHandler(401, "Nie jesteś zalogowany"));
-  }
+  console.log("xdddd");
+
+  if (req.user.id !== req.params.id)
+    return next(
+      errorHandler(401, "Możesz aktualizować tylko swoje własne konto")
+    );
   try {
     const userId = req.user.id;
     const bookings = await Booking.find({ userId });
     res.json(bookings);
+    console.log(bookings);
   } catch (error) {
     next(error);
   }

@@ -4,13 +4,12 @@ import {
   availableSlots,
   getUserBookings,
 } from "../controllers/booking.controller.js";
+import { verifyToken } from "../utils/verify.js";
 
 const router = express.Router();
-router.get("*", (req, res) => {
-  res.send("xddd");
-});
-router.get("/user/:id", getUserBookings);
+
+router.get("/user/:id", verifyToken, getUserBookings);
 router.get("/available-slots/:date", availableSlots);
-router.post("/add", addBooking);
+router.post("/add", verifyToken, addBooking);
 
 export default router;

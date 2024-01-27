@@ -65,6 +65,7 @@ function BookingForm() {
         `${process.env.REACT_APP_SERVER}/server/booking/add`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
