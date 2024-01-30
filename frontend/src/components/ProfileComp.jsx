@@ -184,7 +184,7 @@ export default function ProfileComp() {
   };
   return (
     <div className="profile-container">
-      <h1 className="profile-title">Profile</h1>
+      <h1 className="profile-title">Profil</h1>
       <form className="profile-form" onSubmit={handleSubmit}>
         <input
           type="file"
@@ -251,17 +251,17 @@ export default function ProfileComp() {
       </p>
 
       <div className="bookings-container">
-        <h2>Twoje rezerwacje</h2>
+        <h2 className="bookings-h2">Twoje rezerwacje</h2>
         {bookings.length > 0 ? (
           bookings.map((booking) => (
             <div key={booking._id} className="booking">
-              <p>Date: {booking.date}</p>
-              <p>Time: {booking.time}</p>
+              <p>Data: {booking.date}</p>
+              <p>Godzina: {booking.time}</p>
               {/* Display other booking details as needed */}
             </div>
           ))
         ) : (
-          <p>No bookings found</p>
+          <p>Nie dokonałeś jeszcze rezerwacji</p>
         )}
       </div>
     </div>

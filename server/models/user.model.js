@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema(
       default:
         "https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png",
     },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

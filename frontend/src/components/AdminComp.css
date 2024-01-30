@@ -1,0 +1,22 @@
+.bookings-li {
+  padding: 20px;
+}
+
+.bookings-h1 {
+  font-size: xx-large;
+  text-align: center;
+  margin: 32px 0;
+}
+
+.bookings-h2 {
+  font-size: x-large;
+  margin-top: 80px;
+  margin-bottom: 8px;
+}
+.bookings-container {
+  text-align: center;
+}
+
+.all-bookings-container {
+  text-align: center;
+}

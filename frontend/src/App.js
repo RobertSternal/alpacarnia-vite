@@ -10,6 +10,8 @@ import SignIn from "./components/pages/SignIn";
 import Profile from "./components/pages/Profile";
 import Private from "./components/Private";
 import Booking from "./components/pages/Booking";
+import PrivateAdmin from "./components/PrivateAdmin";
+import AdminComp from "./components/AdminComp";
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
           <Route path="/booking" exact element={<Booking />} />
           <Route exact element={<Private />}>
             <Route path="/profile" exact element={<Profile />} />
+          </Route>
+          <Route exact element={<PrivateAdmin />}>
+            <Route path="/admin/dashboard" exact element={<AdminComp />} />
           </Route>
         </Routes>
       </Router>

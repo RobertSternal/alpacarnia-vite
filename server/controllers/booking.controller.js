@@ -36,8 +36,6 @@ export const addBooking = async (req, res, next) => {
 };
 
 export const getUserBookings = async (req, res, next) => {
-  console.log("xdddd");
-
   if (req.user.id !== req.params.id)
     return next(
       errorHandler(401, "Możesz aktualizować tylko swoje własne konto")
@@ -46,7 +44,18 @@ export const getUserBookings = async (req, res, next) => {
     const userId = req.user.id;
     const bookings = await Booking.find({ userId });
     res.json(bookings);
-    console.log(bookings);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getAllBookings = async (req, res, next) => {
+  try {
+    const bookings = await Booking.find({}).populate(
+      "userId",
+      "username email"
+    );
+    res.status(200).json(bookings);
   } catch (error) {
     next(error);
   }
