@@ -31,7 +31,6 @@ function Cards({ onSelectOffer }) {
       label: "Popularne",
       offer: "Wycieczka",
     },
-    // Dodaj więcej obiektów kart, jeśli potrzebujesz
   ];
 
   const handleCardSelect = (card) => {

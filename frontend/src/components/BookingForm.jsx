@@ -75,7 +75,7 @@ function BookingForm() {
       const data = await res.json();
       if (data.success === false) {
         setError(data.message);
-        console.log("error dziwny");
+        console.log("error niepoprawne dane");
         return;
       }
       setError(null);

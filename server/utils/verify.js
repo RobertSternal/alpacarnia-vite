@@ -27,7 +27,6 @@ export const verifyAdmin = async (req, res, next) => {
           errorHandler(403, "Odmowa dostępu: Tylko dla administracji")
         );
       }
-
       next();
     } catch (err) {
       return next(errorHandler(500, err.message));

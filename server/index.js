@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
 import bookingRouter from "./routes/booking.route.js";
+import offerRouter from "./routes/offer.route.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
@@ -37,6 +38,7 @@ app.listen(port, () => {
 app.use("/server/user", userRouter);
 app.use("/server/auth", authRouter);
 app.use("/server/booking", bookingRouter);
+app.use("/server/offer", offerRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

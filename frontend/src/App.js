@@ -11,7 +11,7 @@ import Profile from "./components/pages/Profile";
 import Private from "./components/Private";
 import Booking from "./components/pages/Booking";
 import PrivateAdmin from "./components/PrivateAdmin";
-import AdminComp from "./components/AdminComp";
+import Admin from "./components/pages/Admin";
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
             <Route path="/profile" exact element={<Profile />} />
           </Route>
           <Route exact element={<PrivateAdmin />}>
-            <Route path="/admin/dashboard" exact element={<AdminComp />} />
+            <Route path="/admin/dashboard" exact element={<Admin />} />
           </Route>
         </Routes>
       </Router>
