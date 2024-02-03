@@ -35,6 +35,18 @@ function OfferManagement() {
     label: "",
     offer: "",
   });
+  //const [updatedOffer, setUpdatedOffer] = useState({
+  // src: "",
+  // text: "",
+  // label: "",
+  //offer: "",
+  //});
+  const [updatedOffer, setUpdatedOffer] = useState({
+    src: "",
+    text: "",
+    label: "",
+    offer: "",
+  });
   const [error, setError] = useState(null);
 
   const handleAddOffer = async () => {
@@ -88,13 +100,102 @@ function OfferManagement() {
       console.error("Error w trakcie przesyłania: ", error);
     }
   };
+  //EDIT
+  const handleEditOffer = async (offerId, updatedOffer) => {
+    try {
+      // Perform the logic to update an offer, e.g., make a PUT request
+      //console.log("KURWA ID do fetcha", offerId);
+      //console.log("KURWA ID do fetcha", id);
+      console.log("Updated Offer before PUT request:", updatedOffer);
+      const res = await fetch(
+        `${process.env.REACT_APP_SERVER}/server/offer/edit/${offerId}`,
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedOffer),
+        }
+      );
 
-  const handleEditOffer = (offerId, updatedOffer) => {
-    // Logic to update an offer
+      if (!res.ok) {
+        setError("Failed to edit offer");
+        return;
+      }
+
+      // Fetch the updated offers after editing
+      const updatedOffersRes = await fetch(
+        `${process.env.REACT_APP_SERVER}/server/offer/admin/management`,
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!updatedOffersRes.ok) {
+        setError("Failed to fetch updated offers");
+        return;
+      }
+
+      const updatedOffers = await updatedOffersRes.json();
+
+      setOffers(updatedOffers);
+      setError(null);
+    } catch (error) {
+      setError(error.message);
+      console.error("Error during offer editing: ", error);
+    }
   };
 
-  const handleDeleteOffer = (offerId) => {
-    setOffers(offers.filter((offer) => offer.id !== offerId));
+  //DELETE
+  const handleDeleteOffer = async (offerId) => {
+    try {
+      // Perform the logic to delete an offer, e.g., make a DELETE request
+      const res = await fetch(
+        `${process.env.REACT_APP_SERVER}/server/offer/delete/${offerId}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!res.ok) {
+        setError("Failed to delete offer");
+        return;
+      }
+
+      // Fetch the updated offers after deleting
+      const updatedOffersRes = await fetch(
+        `${process.env.REACT_APP_SERVER}/server/offer/admin/management`,
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!updatedOffersRes.ok) {
+        setError("Failed to fetch updated offers");
+        return;
+      }
+
+      const updatedOffers = await updatedOffersRes.json();
+
+      setOffers(updatedOffers);
+      setError(null);
+    } catch (error) {
+      setError(error.message);
+      console.error("Error during offer deletion: ", error);
+    }
   };
 
   const handleFormSubmit = (e) => {
@@ -105,6 +206,10 @@ function OfferManagement() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewOffer({ ...newOffer, [name]: value });
+  };
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatedOffer({ ...updatedOffer, [name]: value });
   };
 
   useEffect(() => {
@@ -178,6 +283,38 @@ function OfferManagement() {
         />
         <button type="submit">Dodaj ofertę</button>
       </form>
+      <form className="profile-form profile-container">
+        {/* New form fields for editing an offer */}
+        <input
+          type="text"
+          name="editSrc"
+          defaultValue={updatedOffer.src}
+          onChange={handleEditChange}
+          placeholder="Updated URL zdjęcia"
+        />
+        <input
+          type="text"
+          name="editText"
+          defaultValue={updatedOffer.text}
+          onChange={handleEditChange}
+          placeholder="Updated Opis"
+        />
+        <input
+          type="text"
+          name="editLabel"
+          defaultValue={updatedOffer.label}
+          onChange={handleEditChange}
+          placeholder="Updated Etykieta"
+        />
+        <input
+          type="text"
+          name="editOffer"
+          defaultValue={updatedOffer.offer}
+          onChange={handleEditChange}
+          placeholder="Updated Oferta"
+        />
+        <button type="submit">Edit offer</button>
+      </form>
       <table>
         <thead>
           <tr>
@@ -200,10 +337,22 @@ function OfferManagement() {
                 <td>{offer.label}</td>
                 <td>{offer.offer}</td>
                 <td>
-                  <button onClick={() => handleEditOffer(offer.id)}>
+                  <button
+                    onClick={() => {
+                      console.log("Offer ID: w onclicku", offer._id); // Log the offer ID
+                      const updatedOfferData = {
+                        src: offer.src,
+                        text: offer.text,
+                        label: offer.label,
+                        offer: offer.offer,
+                      };
+                      setUpdatedOffer(updatedOfferData);
+                      handleEditOffer(offer._id, updatedOfferData);
+                    }}
+                  >
                     Edytuj
                   </button>
-                  <button onClick={() => handleDeleteOffer(offer.id)}>
+                  <button onClick={() => handleDeleteOffer(offer._id)}>
                     Usuń
                   </button>
                 </td>
