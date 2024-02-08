@@ -47,6 +47,7 @@ function OfferManagement() {
     label: "",
     offer: "",
   });
+  const [editedOfferId, setEditedOfferId] = useState(null);
   const [error, setError] = useState(null);
 
   const handleAddOffer = async () => {
@@ -104,9 +105,11 @@ function OfferManagement() {
   const handleEditOffer = async (offerId, updatedOffer) => {
     try {
       // Perform the logic to update an offer, e.g., make a PUT request
-      //console.log("KURWA ID do fetcha", offerId);
-      //console.log("KURWA ID do fetcha", id);
-      console.log("Updated Offer before PUT request:", updatedOffer);
+      //console.log("ID do fetcha", offerId);
+      //console.log("ID do fetcha", id);
+      console.log("Updated Offer before PUT request łaa:", updatedOffer);
+      console.log("Offer ID before PUT request:", offerId);
+      //console.log("Updated Offer before PUT request:", updatedOffer);
       const res = await fetch(
         `${process.env.REACT_APP_SERVER}/server/offer/edit/${offerId}`,
         {
@@ -143,6 +146,7 @@ function OfferManagement() {
 
       const updatedOffers = await updatedOffersRes.json();
 
+      console.log("Updated Offers po:", updatedOffers);
       setOffers(updatedOffers);
       setError(null);
     } catch (error) {
@@ -189,6 +193,8 @@ function OfferManagement() {
       }
 
       const updatedOffers = await updatedOffersRes.json();
+
+      console.log("Updated Offers (before setting):", updatedOffers);
 
       setOffers(updatedOffers);
       setError(null);
@@ -245,6 +251,10 @@ function OfferManagement() {
     };
     fetchOffers();
   }, []);
+
+  useEffect(() => {
+    //console.log("Updated Offers in useEffect:", offers);
+  }, [offers]);
 
   return (
     <div className="offer-management-container">
@@ -313,7 +323,12 @@ function OfferManagement() {
           onChange={handleEditChange}
           placeholder="Updated Oferta"
         />
-        <button type="submit">Edit offer</button>
+        <button
+          type="button"
+          onClick={() => handleEditOffer(editedOfferId, updatedOffer)}
+        >
+          Edytuj ofertę
+        </button>
       </form>
       <table>
         <thead>
@@ -338,8 +353,10 @@ function OfferManagement() {
                 <td>{offer.offer}</td>
                 <td>
                   <button
-                    onClick={() => {
+                    type="button"
+                    onClick={(e) => {
                       console.log("Offer ID: w onclicku", offer._id); // Log the offer ID
+                      setEditedOfferId(offer._id);
                       const updatedOfferData = {
                         src: offer.src,
                         text: offer.text,

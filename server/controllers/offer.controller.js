@@ -57,7 +57,7 @@ export const editOffer = async (req, res, next) => {
 };
 
 export const deleteOffer = async (req, res, next) => {
-  const offerId = req.params.offerId;
+  const offerId = req.params.id;
 
   try {
     const deletedOffer = await Offer.findByIdAndDelete(offerId);
