@@ -23,6 +23,7 @@ export const addOffer = async (req, res, next) => {
     next(error);
   }
 };
+
 export const editOffer = async (req, res, next) => {
   const offerId = req.params.id;
   const { src, text, label, offer } = req.body;
@@ -40,12 +41,13 @@ export const editOffer = async (req, res, next) => {
       return next(errorHandler(404, "Oferta nie znaleziona"));
     }
 
-    const updatedOffer = await Offer.findByIdAndUpdate(
-      offerId,
-      { src, text, label, offer },
-      { new: true }
-    );
-
+    const updatedOffer = await Offer.findByIdAndUpdate(offerId, {
+      src,
+      text,
+      label,
+      offer,
+    });
+    console.log(updatedOffer, src, text, label, offer);
     if (!updatedOffer) {
       return next(errorHandler(404, "Oferta nie znaleziona"));
     }

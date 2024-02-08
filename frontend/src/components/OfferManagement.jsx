@@ -297,28 +297,28 @@ function OfferManagement() {
         {/* New form fields for editing an offer */}
         <input
           type="text"
-          name="editSrc"
+          name="src"
           defaultValue={updatedOffer.src}
           onChange={handleEditChange}
           placeholder="Updated URL zdjęcia"
         />
         <input
           type="text"
-          name="editText"
+          name="text"
           defaultValue={updatedOffer.text}
           onChange={handleEditChange}
           placeholder="Updated Opis"
         />
         <input
           type="text"
-          name="editLabel"
+          name="label"
           defaultValue={updatedOffer.label}
           onChange={handleEditChange}
           placeholder="Updated Etykieta"
         />
         <input
           type="text"
-          name="editOffer"
+          name="offer"
           defaultValue={updatedOffer.offer}
           onChange={handleEditChange}
           placeholder="Updated Oferta"
@@ -342,7 +342,7 @@ function OfferManagement() {
         </thead>
         <tbody>
           {offers.map((offer, index) => {
-            console.log("To jest offers map", offer.src);
+            //console.log("To jest offers map", offer.src);
             return (
               <tr key={index}>
                 <td>
