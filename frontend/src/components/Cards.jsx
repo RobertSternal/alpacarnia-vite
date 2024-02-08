@@ -1,40 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CardItem from "./CardItem";
 import "./Cards.css";
 import { useNavigate } from "react-router-dom";
 
 function Cards({ onSelectOffer }) {
+  const [cards, setCards] = useState([]); // Initialize cards as an empty array
   const navigate = useNavigate();
 
-  const cards = [
-    {
-      src: "images/alp1.jpg",
-      text: "Spacer (zdjęcie poglądowe)",
-      label: "Najlepsza cena",
-      offer: "Spacer",
-    },
-    {
-      src: "images/alp2.jpg",
-      text: "Zdjęcie",
-      label: "Najlepsza cena",
-      offer: "Zdjęcie",
-    },
-    {
-      src: "images/alp3.jpg",
-      text: "Możliwość pomalowania nam ogrodzenia",
-      label: "Popularne",
-      offer: "Malowanie",
-    },
-    {
-      src: "images/alpDuo.jpg",
-      text: "Spacer z para Alpak",
-      label: "Popularne",
-      offer: "Wycieczka",
-    },
-  ];
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER}/server/offer/public`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch offers");
+        }
+        const offers = await response.json();
+        setCards(offers); // Update state with fetched offers
+      } catch (error) {
+        console.error("Error fetching offers:", error);
+        // Optionally handle error state here
+      }
+    };
+
+    fetchOffers();
+  }, []); // Empty dependency array means this effect runs once on mount
 
   const handleCardSelect = (card) => {
-    // Przekazuje wybraną ofertę do komponentu nadrzędnego
     navigate("/booking", { state: { selectedOffer: card.offer } });
   };
 

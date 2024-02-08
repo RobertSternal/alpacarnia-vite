@@ -9,6 +9,7 @@ import {
 
 const router = express.Router();
 
+router.get("/public", getAllOffers);
 router.get("/admin/management", verifyAdmin, getAllOffers);
 router.post("/add", verifyAdmin, addOffer);
 router.put("/edit/:id", verifyAdmin, editOffer);
