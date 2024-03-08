@@ -32,6 +32,7 @@ function AlpacaInfo() {
         alpak można pozyskiwać również nawóz, który z powodzeniem można
         wykorzystać w ogrodnictwie.
       </p>
+      <img src="images/wild.jpg" alt="wild-alpaca" className="wild-alpaca" />
     </div>
   );
 }

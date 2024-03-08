@@ -45,7 +45,6 @@ function SignUpForm() {
       setLoading(false);
       setError(error.message);
     }
-    // console.log(data);
   };
 
   console.log(formData);
@@ -55,7 +54,7 @@ function SignUpForm() {
       <form onSubmit={handleSubmit} className="signup-form">
         <input
           type="text"
-          placeholder="username"
+          placeholder="nazwa użytkownika"
           className="username"
           onChange={handleChange}
         />
@@ -67,7 +66,7 @@ function SignUpForm() {
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="hasło"
           className="password"
           onChange={handleChange}
         />

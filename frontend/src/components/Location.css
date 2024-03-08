@@ -1,4 +1,4 @@
-.alpaca-info {
+.location {
   padding: 2rem;
   background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
   /* background: #fff; */
@@ -10,26 +10,22 @@
   /*border:1px solid rgba(0, 0, 0, 0.15);*/
 }
 
-.alpaca-info h2 {
+.location h2,
+h4 {
   text-align: center;
   margin-bottom: 1rem;
 }
 
-.alpaca-info p {
+.location p {
   text-align: justify;
   font-size: 12px;
   line-height: 1.6;
 }
 
-.alpaca-info iframe {
+.location iframe {
   border: 0;
   border-radius: 10px;
   display: block; /* This makes sure margins are applied correctly */
   margin: 0 auto;
   padding-top: 10px;
-}
-.wild-alpaca {
-  display: block;
-  margin: 20px auto;
-  width: 50%;
 }
