@@ -4,12 +4,15 @@ import App from "./App";
 import { persistore, store } from "./redux/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { OffersProvider } from "./components/OffersContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistore}>
-      <App />
+      <OffersProvider>
+        <App />
+      </OffersProvider>
     </PersistGate>
   </Provider>
 );

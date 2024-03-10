@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -12,8 +12,14 @@ import Private from "./components/Private";
 import Booking from "./components/pages/Booking";
 import PrivateAdmin from "./components/PrivateAdmin";
 import Admin from "./components/pages/Admin";
+import { useOffers } from "./components/OffersContext";
 
 function App() {
+  const { offers, fetchOffers } = useOffers();
+  useEffect(() => {
+    fetchOffers(); // Call the fetchOffers method from context
+  }, []);
+
   return (
     <>
       <Router>

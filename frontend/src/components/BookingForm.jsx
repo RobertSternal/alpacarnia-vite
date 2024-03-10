@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./BookingForm.css";
+import { useOffers } from "./OffersContext";
 
 function BookingForm() {
+  const { offers } = useOffers();
   const location = useLocation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -19,17 +21,7 @@ function BookingForm() {
   const [availableTimeSlots, setAvailableTimeSlots] = useState(null);
   const [error, setError] = useState(null);
 
-  /*const timeSlots = [
-    "9:00",
-    "10:00",
-    "11:00",
-    "12:00",
-    "13:00",
-    "14:00",
-    "15:00",
-    "16:00",
-  ];*/
-  const offerSlots = ["Spacer", "Zdjęcie", "Malowanie", "Wycieczka"];
+  //const offerSlots = ["Spacer", "Zdjęcie", "Malowanie", "Wycieczka"];
 
   const handleChange = (e) => {
     setFormData({
@@ -51,6 +43,7 @@ function BookingForm() {
       setError("Error fetching available slots");
     }
   };
+  console.log("tutaj kurwa", offers);
 
   useEffect(() => {
     if (formData.date) {
@@ -91,19 +84,20 @@ function BookingForm() {
       <h1 className="booking-title">Zarezerwuj</h1>
       <form onSubmit={handleSubmit} className="booking-form">
         <select
-          className="offer"
+          name="offer" // Adjusted to use name
           value={formData.offer}
           onChange={handleChange}
         >
           <option value="" disabled>
             Wybierz usługę
           </option>
-          {offerSlots.map((slot, index) => (
-            <option key={index} value={slot}>
-              {slot}
+          {offers.map((offer, index) => (
+            <option key={index} value={offer.offer}>
+              {offer.offer}
             </option>
           ))}
         </select>
+
         <input
           type="text"
           placeholder="Imię"
