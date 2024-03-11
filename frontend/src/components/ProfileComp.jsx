@@ -32,9 +32,7 @@ export default function ProfileComp() {
   const dispatch = useDispatch();
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [bookings, setBookings] = useState([]);
-  console.log(formData);
-  //console.log(filePer);
-  //console.log(file);
+  //console.log(formData);
 
   //firebase storage rules
   /*

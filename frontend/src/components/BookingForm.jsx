@@ -24,9 +24,15 @@ function BookingForm() {
   //const offerSlots = ["Spacer", "Zdjęcie", "Malowanie", "Wycieczka"];
 
   const handleChange = (e) => {
-    setFormData({
+    /*setFormData({
       ...formData,
       [e.target.className]: e.target.value,
+    });
+    */
+    const { name, value } = e.target; // Destructure name and value from event target
+    setFormData({
+      ...formData,
+      [name]: value, // Use the name attribute to update the corresponding key in state
     });
   };
 
@@ -43,7 +49,6 @@ function BookingForm() {
       setError("Error fetching available slots");
     }
   };
-  console.log("tutaj kurwa", offers);
 
   useEffect(() => {
     if (formData.date) {
@@ -84,7 +89,7 @@ function BookingForm() {
       <h1 className="booking-title">Zarezerwuj</h1>
       <form onSubmit={handleSubmit} className="booking-form">
         <select
-          name="offer" // Adjusted to use name
+          name="offer" // using name
           value={formData.offer}
           onChange={handleChange}
         >

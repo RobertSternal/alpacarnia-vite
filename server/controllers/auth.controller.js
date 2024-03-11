@@ -27,7 +27,6 @@ export const signin = async (req, res, next) => {
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET_KEY);
 
     const { password: pass, ...userInfo } = validUser._doc;
-    console.log("Ustawiam ciasteczko", token);
     res
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
@@ -43,7 +42,6 @@ export const oauth = async (req, res, next) => {
     if (user) {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
       const { password: pass, ...userInfo } = user._doc;
-      console.log("Ustawiam ciasteczko", token);
       res
         .cookie("access_token", token, { httpOnly: true })
         .status(200)
@@ -64,7 +62,6 @@ export const oauth = async (req, res, next) => {
       await newUser.save();
       const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET_KEY);
       const { password: pass, ...userInfo } = newUser._doc;
-      console.log("Ustawiam ciasteczko", token);
       res
         .cookie("access_token", token, { httpOnly: true })
         .status(200)

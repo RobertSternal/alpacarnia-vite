@@ -35,12 +35,6 @@ function OfferManagement() {
     label: "",
     offer: "",
   });
-  //const [updatedOffer, setUpdatedOffer] = useState({
-  // src: "",
-  // text: "",
-  // label: "",
-  //offer: "",
-  //});
   const [updatedOffer, setUpdatedOffer] = useState({
     src: "",
     text: "",
@@ -104,12 +98,8 @@ function OfferManagement() {
   //EDIT
   const handleEditOffer = async (offerId, updatedOffer) => {
     try {
-      // Perform the logic to update an offer, e.g., make a PUT request
-      //console.log("ID do fetcha", offerId);
-      //console.log("ID do fetcha", id);
       console.log("Updated Offer before PUT request łaa:", updatedOffer);
       console.log("Offer ID before PUT request:", offerId);
-      //console.log("Updated Offer before PUT request:", updatedOffer);
       const res = await fetch(
         `${process.env.REACT_APP_SERVER}/server/offer/edit/${offerId}`,
         {
@@ -252,9 +242,7 @@ function OfferManagement() {
     fetchOffers();
   }, []);
 
-  useEffect(() => {
-    //console.log("Updated Offers in useEffect:", offers);
-  }, [offers]);
+  useEffect(() => {}, [offers]);
 
   return (
     <div className="offer-management-container">
@@ -342,7 +330,6 @@ function OfferManagement() {
         </thead>
         <tbody>
           {offers.map((offer, index) => {
-            //console.log("To jest offers map", offer.src);
             return (
               <tr key={index}>
                 <td>

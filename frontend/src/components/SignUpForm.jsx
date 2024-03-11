@@ -47,7 +47,7 @@ function SignUpForm() {
     }
   };
 
-  console.log(formData);
+  //console.log(formData);
   return (
     <div className="signup-container">
       <h1 className="signup-title"> Zarejestruj się </h1>
