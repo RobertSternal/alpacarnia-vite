@@ -17,7 +17,7 @@ const offerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  /*bestSell: {
+  /*bestSeller: {
     type: Boolean,
     required: true,
   },

@@ -1,0 +1,46 @@
+.week-navigation {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.week-navigation button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.reservation-system {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+}
+
+.day-column {
+  border: 1px solid #ddd;
+  min-height: 200px;
+}
+
+.day-header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.booking-entry {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.booking-time {
+  font-weight: bold;
+}
+
+.booking-info {
+  font-size: 0.8rem;
+}
