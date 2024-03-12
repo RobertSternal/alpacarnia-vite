@@ -12,12 +12,21 @@ export const getAllOffers = async (req, res, next) => {
 };
 
 export const addOffer = async (req, res, next) => {
-  const { src, text, label, offer } = req.body;
+  const { src, text, label, offer, description1, description2, description3 } =
+    req.body;
   if (!src || !text || !label) {
     return next(errorHandler(401, "Wprowadzono nieprawidłowe dane"));
   }
   try {
-    const newOffer = await Offer.create({ src, text, label, offer });
+    const newOffer = await Offer.create({
+      src,
+      text,
+      label,
+      offer,
+      description1,
+      description2,
+      description3,
+    });
     res.status(201).json("Oferta została dodana");
   } catch (error) {
     next(error);
@@ -26,7 +35,8 @@ export const addOffer = async (req, res, next) => {
 
 export const editOffer = async (req, res, next) => {
   const offerId = req.params.id;
-  const { src, text, label, offer } = req.body;
+  const { src, text, label, offer, description1, description2, description3 } =
+    req.body;
 
   if (!src || !text || !label) {
     console.error("Error: Invalid data provided for offer update");
@@ -46,6 +56,9 @@ export const editOffer = async (req, res, next) => {
       text,
       label,
       offer,
+      description1,
+      description2,
+      description3,
     });
     console.log(updatedOffer, src, text, label, offer);
     if (!updatedOffer) {

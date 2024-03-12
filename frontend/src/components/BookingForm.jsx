@@ -9,7 +9,7 @@ function BookingForm() {
   const location = useLocation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    offer: location.state?.selectedOffer || "",
+    offer: location.state?.selectedOffer?.text || "",
     firstName: "",
     lastName: "",
     amountPeople: "",

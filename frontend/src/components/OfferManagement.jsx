@@ -34,12 +34,18 @@ function OfferManagement() {
     text: "",
     label: "",
     offer: "",
+    description1: "",
+    description2: "",
+    description3: "",
   });
   const [updatedOffer, setUpdatedOffer] = useState({
     src: "",
     text: "",
     label: "",
     offer: "",
+    description1: "",
+    description2: "",
+    description3: "",
   });
   const [editedOfferId, setEditedOfferId] = useState(null);
   const [error, setError] = useState(null);
@@ -88,7 +94,15 @@ function OfferManagement() {
       const updatedOffers = await updatedOffersRes.json();
 
       setOffers(updatedOffers);
-      setNewOffer({ src: "", text: "", label: "", offer: "" });
+      setNewOffer({
+        src: "",
+        text: "",
+        label: "",
+        offer: "",
+        description1: "",
+        description2: "",
+        description3: "",
+      });
       setError(null);
     } catch (error) {
       setError(error.message);
@@ -279,6 +293,27 @@ function OfferManagement() {
           onChange={handleChange}
           placeholder="Oferta"
         />
+        <input
+          type="text"
+          name="description1"
+          value={newOffer.description1}
+          onChange={handleChange}
+          placeholder="Opis 1"
+        />
+        <input
+          type="text"
+          name="description2"
+          value={newOffer.description2}
+          onChange={handleChange}
+          placeholder="Opis 2"
+        />
+        <input
+          type="text"
+          name="description3"
+          value={newOffer.description3}
+          onChange={handleChange}
+          placeholder="Opis 3"
+        />
         <button type="submit">Dodaj ofertę</button>
       </form>
       <form className="profile-form profile-container">
@@ -311,6 +346,27 @@ function OfferManagement() {
           onChange={handleEditChange}
           placeholder="Updated Oferta"
         />
+        <input
+          type="text"
+          name="description1"
+          value={updatedOffer.description1}
+          onChange={handleChange}
+          placeholder="Opis 1"
+        />
+        <input
+          type="text"
+          name="description2"
+          value={updatedOffer.description2}
+          onChange={handleChange}
+          placeholder="Opis 2"
+        />
+        <input
+          type="text"
+          name="description3"
+          value={updatedOffer.description3}
+          onChange={handleChange}
+          placeholder="Opis 3"
+        />
         <button
           type="button"
           onClick={() => handleEditOffer(editedOfferId, updatedOffer)}
@@ -326,6 +382,9 @@ function OfferManagement() {
             <th>Etykieta</th>
             <th>Oferta</th>
             <th>Akcje</th>
+            <th>description1</th>
+            <th>description2</th>
+            <th>description3</th>
           </tr>
         </thead>
         <tbody>
@@ -338,6 +397,9 @@ function OfferManagement() {
                 <td>{offer.text}</td>
                 <td>{offer.label}</td>
                 <td>{offer.offer}</td>
+                <td>{offer.description1}</td>
+                <td>{offer.description2}</td>
+                <td>{offer.description3}</td>
                 <td>
                   <button
                     type="button"
@@ -349,6 +411,9 @@ function OfferManagement() {
                         text: offer.text,
                         label: offer.label,
                         offer: offer.offer,
+                        description1: offer.description1,
+                        description2: offer.description2,
+                        description3: offer.description3,
                       };
                       setUpdatedOffer(updatedOfferData);
                       handleEditOffer(offer._id, updatedOfferData);

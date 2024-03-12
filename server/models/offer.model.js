@@ -19,9 +19,18 @@ const offerSchema = new mongoose.Schema({
   },
   /*bestSeller: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   */
+  description1: {
+    type: String,
+  },
+  description2: {
+    type: String,
+  },
+  description3: {
+    type: String,
+  },
 });
 
 const Offer = mongoose.model("Offer", offerSchema);

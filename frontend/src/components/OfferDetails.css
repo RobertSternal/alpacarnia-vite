@@ -1,0 +1,65 @@
+/* OfferDetails.css */
+
+.offer-details {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.offer-details h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+}
+
+.offer-details img {
+  max-width: 100%;
+  display: block;
+  margin: 20px auto;
+  border-radius: 4px;
+}
+
+.offer-details p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+.reserve-button {
+  padding: 10px 20px;
+  background-color: rgb(28, 27, 27);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.reserve-button:hover {
+  opacity: 0.9;
+}
+
+/* You can add more styles as needed */
+@media (max-width: 768px) {
+  .offer-details {
+    padding: 10px;
+  }
+
+  .offer-details h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .offer-details h2 {
+    font-size: 1.25rem;
+  }
+}

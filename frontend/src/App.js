@@ -13,6 +13,7 @@ import Booking from "./components/pages/Booking";
 import PrivateAdmin from "./components/PrivateAdmin";
 import Admin from "./components/pages/Admin";
 import { useOffers } from "./components/OffersContext";
+import OfferDetails from "./components/OfferDetails";
 
 function App() {
   const { offers, fetchOffers } = useOffers();
@@ -31,6 +32,7 @@ function App() {
           <Route path="/sign-up" exact element={<SignUp />} />
           <Route path="/sign-in" exact element={<SignIn />} />
           <Route path="/booking" exact element={<Booking />} />
+          <Route path="/offer/:id" element={<OfferDetails />} />
           <Route exact element={<Private />}>
             <Route path="/profile" exact element={<Profile />} />
           </Route>

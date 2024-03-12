@@ -13,7 +13,8 @@ function Cards({ onSelectOffer }) {
   }, [fetchOffers]);
 
   const handleCardSelect = (card) => {
-    navigate("/booking", { state: { selectedOffer: card.offer } });
+    navigate(`/offer/${card._id}`);
+    //navigate("/booking", { state: { selectedOffer: card.offer } });
   };
 
   return (
