@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function CardItem({ src, text, label, path, onCardSelect }) {
-  console.log("CardItem src: ", src);
   return (
     <>
       <li className="cards__item" onClick={onCardSelect}>

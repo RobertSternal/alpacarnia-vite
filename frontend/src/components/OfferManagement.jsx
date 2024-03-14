@@ -349,23 +349,23 @@ function OfferManagement() {
         <input
           type="text"
           name="description1"
-          value={updatedOffer.description1}
-          onChange={handleChange}
-          placeholder="Opis 1"
+          defaultValue={updatedOffer.description1}
+          onChange={handleEditChange}
+          placeholder="Updated Opis 1"
         />
         <input
           type="text"
           name="description2"
-          value={updatedOffer.description2}
-          onChange={handleChange}
-          placeholder="Opis 2"
+          defaultValue={updatedOffer.description2}
+          onChange={handleEditChange}
+          placeholder="Updated Opis 2"
         />
         <input
           type="text"
           name="description3"
-          value={updatedOffer.description3}
-          onChange={handleChange}
-          placeholder="Opis 3"
+          defaultValue={updatedOffer.description3}
+          onChange={handleEditChange}
+          placeholder="Updated Opis 3"
         />
         <button
           type="button"

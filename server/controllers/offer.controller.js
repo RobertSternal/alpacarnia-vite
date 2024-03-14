@@ -14,7 +14,7 @@ export const getAllOffers = async (req, res, next) => {
 export const addOffer = async (req, res, next) => {
   const { src, text, label, offer, description1, description2, description3 } =
     req.body;
-  if (!src || !text || !label) {
+  if (!src || !text || !label || !description1) {
     return next(errorHandler(401, "Wprowadzono nieprawidłowe dane"));
   }
   try {
@@ -38,7 +38,7 @@ export const editOffer = async (req, res, next) => {
   const { src, text, label, offer, description1, description2, description3 } =
     req.body;
 
-  if (!src || !text || !label) {
+  if (!src || !text || !label || !description1) {
     console.error("Error: Invalid data provided for offer update");
     return next(errorHandler(401, "Wprowadzono nieprawidłowe dane"));
   }
@@ -60,7 +60,6 @@ export const editOffer = async (req, res, next) => {
       description2,
       description3,
     });
-    console.log(updatedOffer, src, text, label, offer);
     if (!updatedOffer) {
       return next(errorHandler(404, "Oferta nie znaleziona"));
     }

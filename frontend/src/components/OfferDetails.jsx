@@ -21,12 +21,10 @@ function OfferDetails() {
   return (
     <div className="offer-details">
       <h2>{offer.text}</h2>
-      {/* Display more details here */}
       <img src={offer.src} alt={offer.text} />
-      <p>
-        {offer.description} {/* Assuming there's a description field */}
-      </p>
-      {/* Add more offer details as needed */}
+      <h3>{offer.description1}</h3>
+      <p>{offer.description2}</p>
+      <p>{offer.description3}</p>
       <div className="button-container">
         <button
           type="button"

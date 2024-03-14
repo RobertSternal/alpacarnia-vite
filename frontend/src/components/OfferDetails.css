@@ -4,8 +4,8 @@
   max-width: 800px;
   margin: 40px auto;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+  border-radius: 10px;
   background-color: #ffffff;
 }
 
@@ -17,6 +17,8 @@
 
 .offer-details img {
   max-width: 100%;
+  max-height: 400px; /* Set a maximum height for the image */
+  object-fit: cover; /* This will cover the area of the box without distorting the aspect ratio */
   display: block;
   margin: 20px auto;
   border-radius: 4px;
@@ -47,7 +49,22 @@
   opacity: 0.9;
 }
 
-/* You can add more styles as needed */
+.offer-details h3,
+.offer-details p {
+  text-align: center;
+  color: black;
+}
+
+.offer-details h3 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+.offer-details p {
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
 @media (max-width: 768px) {
   .offer-details {
     padding: 10px;

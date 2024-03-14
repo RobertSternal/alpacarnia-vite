@@ -21,8 +21,6 @@ function BookingForm() {
   const [availableTimeSlots, setAvailableTimeSlots] = useState(null);
   const [error, setError] = useState(null);
 
-  //const offerSlots = ["Spacer", "Zdjęcie", "Malowanie", "Wycieczka"];
-
   const handleChange = (e) => {
     /*setFormData({
       ...formData,
@@ -32,7 +30,7 @@ function BookingForm() {
     const { name, value } = e.target; // Destructure name and value from event target
     setFormData({
       ...formData,
-      [name]: value, // Use the name attribute to update the corresponding key in state
+      [name]: value, //name attribute to update the corresponding key in state
     });
   };
 
@@ -106,45 +104,45 @@ function BookingForm() {
         <input
           type="text"
           placeholder="Imię"
-          className="firstName"
+          name="firstName"
           value={formData.firstName}
           onChange={handleChange}
         />
         <input
           type="text"
           placeholder="Nazwisko"
-          className="lastName"
+          name="lastName"
           value={formData.lastName}
           onChange={handleChange}
         />
         <input
           type="number"
           placeholder="Liczba osób"
-          className="amountPeople"
+          name="amountPeople"
           value={formData.amountPeople}
           onChange={handleChange}
         />
         <input
           type="email"
           placeholder="Email"
-          className="email"
+          name="email"
           value={formData.email}
           onChange={handleChange}
         />
         <input
           type="number"
           placeholder="Telefon"
-          className="phone"
+          name="phone"
           value={formData.phone}
           onChange={handleChange}
         />
         <input
           type="date"
-          className="date"
+          name="date"
           value={formData.date}
           onChange={handleChange}
         />
-        <select className="time" value={formData.time} onChange={handleChange}>
+        <select name="time" value={formData.time} onChange={handleChange}>
           <option value="" disabled selected>
             Wybierz godzinę
           </option>
