@@ -1,52 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CardItem from "./CardItem";
-import "./CardsProducts.css";
+import "./Cards.css";
+import { useNavigate } from "react-router-dom";
+import { useOffers } from "./OffersContext";
 
-function CardsProducts() {
+function Cards({ onSelectOffer }) {
+  const { offers, fetchOffers } = useOffers();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchOffers(); // Call the fetchOffers method from context
+  }, [fetchOffers]);
+
+  const handleCardSelect = (card) => {
+    navigate(`/offer/${card._id}`);
+    //navigate("/booking", { state: { selectedOffer: card.offer } });
+  };
+
   return (
     <div className="cards">
-      <h1>Sprawdź naszą ofertę!</h1>
+      <h1>Szef kuchni Robert poleca:</h1>
       <div className="cards__container">
         <div className="cards__wrapper">
           <ul className="cards__items">
-            <CardItem
-              src="images/alp1.jpg"
-              text="Spacer z Alpaką (1H)"
-              label="Popularne"
-              path="/services"
-            />
-            <CardItem
-              src="images/alpDuo.jpg"
-              text="Spacer z Alpakami (2H)"
-              label="Popularne"
-              path="/services"
-            />
-            <CardItem
-              src="images/alp3.jpg"
-              text="Malowanie z alpakami"
-              label="Popularne"
-              path="/services"
-            />
-          </ul>
-          <ul className="cards__items">
-            <CardItem
-              src="images/alp2.jpg"
-              text="Zdjęcia ze zwierzętami"
-              label="Nowość"
-              path="/services"
-            />
-            <CardItem
-              src="images/alp5.jpg"
-              text="Opowiadania"
-              label="Nowość"
-              path="/services"
-            />
-            <CardItem
-              src="images/wild.jpg"
-              text="Wycieczka z Panią Kasią"
-              label="Nowość"
-              path="/services"
-            />
+            {offers.map((card, index) => (
+              <CardItem
+                key={index}
+                src={card.src}
+                text={card.text}
+                label={card.label}
+                path="/services"
+                onCardSelect={() => handleCardSelect(card)}
+              />
+            ))}
           </ul>
         </div>
       </div>
@@ -54,4 +40,4 @@ function CardsProducts() {
   );
 }
 
-export default CardsProducts;
+export default Cards;

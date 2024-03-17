@@ -17,11 +17,6 @@ const offerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  /*bestSeller: {
-    type: Boolean,
-    required: false,
-  },
-  */
   description1: {
     type: String,
   },
@@ -30,6 +25,9 @@ const offerSchema = new mongoose.Schema({
   },
   description3: {
     type: String,
+  },
+  bestSeller: {
+    type: Boolean,
   },
 });
 

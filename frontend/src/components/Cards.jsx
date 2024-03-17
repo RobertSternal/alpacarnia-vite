@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import CardItem from "./CardItem";
 import "./Cards.css";
 import { useNavigate } from "react-router-dom";
-import { useOffers } from "./OffersContext"; // Adjust the import path as necessary
+import { useOffers } from "./OffersContext";
 
 function Cards({ onSelectOffer }) {
   const { offers, fetchOffers } = useOffers();
@@ -17,13 +17,14 @@ function Cards({ onSelectOffer }) {
     //navigate("/booking", { state: { selectedOffer: card.offer } });
   };
 
+  const bestSellerOffers = offers.filter((offer) => offer.bestSeller);
   return (
     <div className="cards">
       <h1>Szef kuchni Robert poleca:</h1>
       <div className="cards__container">
         <div className="cards__wrapper">
           <ul className="cards__items">
-            {offers.map((card, index) => (
+            {bestSellerOffers.map((card, index) => (
               <CardItem
                 key={index}
                 src={card.src}
