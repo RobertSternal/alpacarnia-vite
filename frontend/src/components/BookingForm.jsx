@@ -17,9 +17,12 @@ function BookingForm() {
     phone: "",
     date: "",
     time: "",
+    offerPack: "",
   });
   const [availableTimeSlots, setAvailableTimeSlots] = useState(null);
   const [error, setError] = useState(null);
+
+  const showOfferSelect = formData.offer === "Oferta przedszkolna";
 
   const handleChange = (e) => {
     /*setFormData({
@@ -100,6 +103,33 @@ function BookingForm() {
             </option>
           ))}
         </select>
+
+        {showOfferSelect && (
+          <select
+            name="offerPack"
+            value={formData.offerPack}
+            onChange={handleChange}
+          >
+            <option value="" disabled>
+              Wybierz pakiet oferty
+            </option>
+            <option value="first-pack">Pakiet pierwszy</option>
+            <option value="second-pack">Pakiet drugi</option>
+          </select>
+        )}
+        {/* {showOfferSelect ? (
+          <select
+            name="offerPack"
+            value={formData.offerPack}
+            onChange={handleChange}
+          >
+            <option value="" disabled>
+              Wybierz pakiet oferty
+            </option>
+            <option value="first-pack">Pakiet pierwszy</option>
+            <option value="second-pack">Pakiet drugi</option>
+          </select>
+        ) : null} */}
 
         <input
           type="text"

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./BookingPlanner.css"; // Make sure to create and import your styles
+import "./BookingPlanner.css";
 
 function ReservationSystem() {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState(null);
 
-  // Helper function to calculate the start of the week
+  // function to calculate the start of the week
   const startOfWeek = (date) => {
     const diff =
       date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1); // Adjust if your week starts on Sunday
@@ -97,7 +97,7 @@ function ReservationSystem() {
 
   return (
     <div className="reservation-system">
-      <h1>Dokonane rezerwacje</h1>
+      <h1 className="booking-planner-title">Dokonane rezerwacje</h1>
       <div className="week-navigation">
         <button onClick={previousWeek}>Poprzedni tydzień</button>
         <button onClick={nextWeek}>Następny tydzień</button>

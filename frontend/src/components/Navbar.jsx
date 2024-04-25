@@ -78,7 +78,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          <Link to="/profile">
+          <Link to="/profile" className="navbar-img-link">
             {currentUser ? (
               <img
                 src={currentUser.pfpicture}

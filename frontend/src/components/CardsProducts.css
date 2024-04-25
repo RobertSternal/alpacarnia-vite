@@ -22,13 +22,18 @@ h1 {
 }
 
 .cards__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* This centers the cards in the container */
   margin-bottom: 24px;
 }
 
 .cards__item {
-  display: flex;
   flex: 1;
-  margin: 0 1rem;
+  margin: 0.5rem; /* Adjust the margin as necessary */
+  max-width: calc(
+    25% - 1rem
+  ); /* Adjust based on margin to fit 4 items per row */
   border-radius: 10px;
 }
 

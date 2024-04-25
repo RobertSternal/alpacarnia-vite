@@ -14,7 +14,6 @@ function Cards({ onSelectOffer }) {
 
   const handleCardSelect = (card) => {
     navigate(`/offer/${card._id}`);
-    //navigate("/booking", { state: { selectedOffer: card.offer } });
   };
 
   const bestSellerOffers = offers.filter((offer) => offer.bestSeller);

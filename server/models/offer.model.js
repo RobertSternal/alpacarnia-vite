@@ -29,6 +29,9 @@ const offerSchema = new mongoose.Schema({
   bestSeller: {
     type: Boolean,
   },
+  pack: {
+    type: Object,
+  },
 });
 
 const Offer = mongoose.model("Offer", offerSchema);

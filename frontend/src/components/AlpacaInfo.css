@@ -4,13 +4,13 @@
   /* background: #fff; */
   border-radius: 10px;
   box-shadow: 0px 1px 14px 0px rgba(180, 180, 180, 1);
-  margin: 2rem auto;
+  margin: 3rem auto;
   max-width: 80%;
   color: whitesmoke;
   /*border:1px solid rgba(0, 0, 0, 0.15);*/
 }
 
-.alpaca-info h2 {
+.alpaca-info h1 {
   text-align: center;
   margin-bottom: 1rem;
 }

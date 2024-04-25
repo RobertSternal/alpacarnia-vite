@@ -4,7 +4,7 @@ import "./AlpacaInfo.css";
 function AlpacaInfo() {
   return (
     <div className="alpaca-info">
-      <h2>Występowanie i hodowla alpak</h2>
+      <h1>Występowanie i hodowla alpak</h1>
       <p>
         Alpaki to zwierzęta, które żyją w stadach i hoduje się je w całej
         Ameryce Południowej. Przeważnie jednak żyją w warunkach umiarkowanych w

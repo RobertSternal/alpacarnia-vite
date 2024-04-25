@@ -37,6 +37,7 @@ function OfferManagement() {
     description1: "",
     description2: "",
     description3: "",
+    bestSeller: "",
   });
   const [updatedOffer, setUpdatedOffer] = useState({
     src: "",
@@ -46,6 +47,7 @@ function OfferManagement() {
     description1: "",
     description2: "",
     description3: "",
+    bestSeller: "",
   });
   const [editedOfferId, setEditedOfferId] = useState(null);
   const [error, setError] = useState(null);
@@ -214,12 +216,20 @@ function OfferManagement() {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewOffer({ ...newOffer, [name]: value });
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      setNewOffer({ ...newOffer, [name]: checked });
+    } else {
+      setNewOffer({ ...newOffer, [name]: value });
+    }
   };
   const handleEditChange = (e) => {
-    const { name, value } = e.target;
-    setUpdatedOffer({ ...updatedOffer, [name]: value });
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      setUpdatedOffer({ ...updatedOffer, [name]: checked });
+    } else {
+      setUpdatedOffer({ ...updatedOffer, [name]: value });
+    }
   };
 
   useEffect(() => {
@@ -260,7 +270,7 @@ function OfferManagement() {
 
   return (
     <div className="offer-management-container">
-      <h1>Zarządzanie ofertą</h1>
+      <h1 className="offer-mg-title">Zarządzanie ofertą</h1>
       <form
         className="profile-form profile-container"
         onSubmit={handleFormSubmit}
@@ -314,7 +324,15 @@ function OfferManagement() {
           onChange={handleChange}
           placeholder="Opis 3"
         />
-        <button type="submit">Dodaj ofertę</button>
+        <input
+          type="checkbox"
+          name="bestSeller"
+          checked={newOffer.bestSeller}
+          onChange={handleChange}
+        />
+        <button type="submit" className="offer-action-button">
+          Dodaj ofertę
+        </button>
       </form>
       <form className="profile-form profile-container">
         {/* New form fields for editing an offer */}
@@ -367,7 +385,14 @@ function OfferManagement() {
           onChange={handleEditChange}
           placeholder="Updated Opis 3"
         />
+        <input
+          type="checkbox"
+          name="bestSeller"
+          checked={updatedOffer.bestSeller}
+          onChange={handleEditChange}
+        />
         <button
+          className="offer-action-button"
           type="button"
           onClick={() => handleEditOffer(editedOfferId, updatedOffer)}
         >
@@ -381,10 +406,11 @@ function OfferManagement() {
             <th>Opis</th>
             <th>Etykieta</th>
             <th>Oferta</th>
+            <th className="description-cell">description1</th>
+            <th className="description-cell">description2</th>
+            <th className="description-cell">description3</th>
+            <th>Bestseller</th>
             <th>Akcje</th>
-            <th>description1</th>
-            <th>description2</th>
-            <th>description3</th>
           </tr>
         </thead>
         <tbody>
@@ -392,38 +418,61 @@ function OfferManagement() {
             return (
               <tr key={index}>
                 <td>
-                  <img src={offer.src} alt="Offer" style={{ width: "50px" }} />
+                  <div className="content-div">
+                    <img
+                      className="offer-management-img"
+                      src={offer.src}
+                      alt="Offer"
+                    />
+                  </div>
                 </td>
-                <td>{offer.text}</td>
-                <td>{offer.label}</td>
-                <td>{offer.offer}</td>
-                <td>{offer.description1}</td>
-                <td>{offer.description2}</td>
-                <td>{offer.description3}</td>
                 <td>
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      console.log("Offer ID: w onclicku", offer._id); // Log the offer ID
-                      setEditedOfferId(offer._id);
-                      const updatedOfferData = {
-                        src: offer.src,
-                        text: offer.text,
-                        label: offer.label,
-                        offer: offer.offer,
-                        description1: offer.description1,
-                        description2: offer.description2,
-                        description3: offer.description3,
-                      };
-                      setUpdatedOffer(updatedOfferData);
-                      handleEditOffer(offer._id, updatedOfferData);
-                    }}
-                  >
-                    Edytuj
-                  </button>
-                  <button onClick={() => handleDeleteOffer(offer._id)}>
-                    Usuń
-                  </button>
+                  <div className="content-div">{offer.text}</div>
+                </td>
+                <td>
+                  <div className="content-div">{offer.label}</div>
+                </td>
+                <td>
+                  <div className="content-div">{offer.offer}</div>
+                </td>
+                <td>
+                  <div className="description-cell">{offer.description1}</div>
+                </td>
+                <td>
+                  <div className="description-cell">{offer.description2}</div>
+                </td>
+                <td>
+                  <div className="description-cell">{offer.description3}</div>
+                </td>
+                <td>
+                  <div className="content-div">
+                    {offer.bestSeller ? "Tak" : "Nie"}
+                  </div>
+                </td>
+                <td>
+                  <div className="action-buttons">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditedOfferId(offer._id);
+                        setUpdatedOffer({
+                          src: offer.src,
+                          text: offer.text,
+                          label: offer.label,
+                          offer: offer.offer,
+                          description1: offer.description1,
+                          description2: offer.description2,
+                          description3: offer.description3,
+                          bestSeller: offer.bestSeller,
+                        });
+                      }}
+                    >
+                      Edytuj
+                    </button>
+                    <button onClick={() => handleDeleteOffer(offer._id)}>
+                      Usuń
+                    </button>
+                  </div>
                 </td>
               </tr>
             );

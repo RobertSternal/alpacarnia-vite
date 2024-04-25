@@ -83,6 +83,10 @@
   background-color: #fff;
 }
 
+.navbar-img-link {
+  margin-top: 0.5rem;
+}
+
 @media screen and (max-width: 960px) {
   .NavbarItems {
     position: relative;
@@ -162,5 +166,9 @@
     background: #fff;
     color: #242424;
     transition: 250ms;
+  }
+
+  .navbar-container {
+    padding-left: 30%;
   }
 }

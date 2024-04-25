@@ -19,6 +19,7 @@ h1 {
 .cards__wrapper {
   position: relative;
   margin: 50px 0 45px;
+  width: 100%;
 }
 
 .cards__items {
@@ -114,5 +115,38 @@ h1 {
 @media only screen and (max-width: 1024px) {
   .cards__item {
     margin-bottom: 2rem;
+  }
+}
+
+.cards__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* This centers the cards in the container */
+  margin-bottom: 24px;
+}
+
+.cards__item {
+  flex: 1;
+  margin: 0.5rem; /* Adjust the margin as necessary */
+  max-width: calc(
+    25% - 1rem
+  ); /* Adjust based on margin to fit 4 items per row */
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .cards__item {
+    margin-bottom: 2rem;
+    max-width: calc(
+      50% - 1rem
+    ); /* Adjust for smaller screens to fit 2 items per row */
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cards__item {
+    max-width: calc(
+      100% - 2rem
+    ); /* Adjust for very small screens to fit 1 item per row */
   }
 }
