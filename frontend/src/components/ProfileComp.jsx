@@ -252,7 +252,7 @@ export default function ProfileComp() {
         <h2 className="bookings-h2">Twoje rezerwacje</h2>
         {bookings.length > 0 ? (
           bookings.map((booking) => (
-            <div key={booking._id} className="booking">
+            <div key={booking._id} className="profile-booking">
               <p>Data: {booking.date}</p>
               <p>Godzina: {booking.time}</p>
               {/* Display other booking details as needed */}

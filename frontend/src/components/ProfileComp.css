@@ -24,6 +24,9 @@ input {
   max-width: 512px;
   margin: 0 auto;
 }
+.profile-booking {
+  padding-bottom: 0.75rem;
+}
 .update-button {
   background-color: rgb(28, 27, 27);
   color: white;
