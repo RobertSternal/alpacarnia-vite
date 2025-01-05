@@ -1,0 +1,34 @@
+.aboutus-info {
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 1px 14px 0px rgba(180, 180, 180, 1);
+  margin: 3rem auto;
+  max-width: 80%;
+  color: black;
+  /*border:1px solid rgba(0, 0, 0, 0.15);*/
+}
+
+.aboutus-info h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.aboutus-info p {
+  text-align: justify;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.aboutus-info iframe {
+  border: 0;
+  border-radius: 10px;
+  display: block; /* This makes sure margins are applied correctly */
+  margin: 0 auto;
+  padding-top: 10px;
+}
+.wild-alpaca {
+  display: block;
+  margin: 20px auto;
+  width: 50%;
+}
