@@ -51,23 +51,52 @@
   opacity: 0.9;
 }
 
+/* Table Styles */
+.offers-table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
-  table-layout: fixed;
+  background: white;
   margin: 0 auto;
 }
 
-th,
-td {
-  border: 1px solid black;
-  padding: 8px;
+th {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  padding: 12px;
   text-align: left;
-  vertical-align: top;
+  border-bottom: 2px solid #dee2e6;
 }
 
-th {
-  background-color: #f2f2f2;
+td {
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+  vertical-align: middle;
+}
+
+/* Column Widths */
+.col-image { width: 80px; }
+.col-text { width: 15%; }
+.col-label { width: 10%; }
+.col-offer { width: 10%; }
+.col-description { width: 15%; }
+.col-bestseller { width: 80px; }
+.col-actions { width: 120px; }
+
+/* Cell Content */
+.cell-content {
+  max-height: 100px;
+  overflow-y: auto;
+  word-break: break-word;
 }
 
 .offer-management-img {
@@ -75,16 +104,10 @@ th {
   height: 50px;
   display: block;
   margin: 0 auto;
+  object-fit: contain;
 }
 
-.content-div {
-  word-wrap: break-word;
-}
-
-.description-cell {
-  word-wrap: break-word;
-}
-
+/* Action Buttons */
 .action-buttons {
   display: flex;
   gap: 5px;
@@ -96,52 +119,78 @@ th {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: rgb(28, 27, 27);
+  font-size: 0.85rem;
+  transition: background-color 0.2s;
+}
+
+.action-buttons button:first-child {
+  background-color: #28a745;
   color: white;
+}
+
+.action-buttons button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.action-buttons button:hover {
+  opacity: 0.9;
 }
 
 .error-message {
   color: #dc3545;
   margin: 10px 0;
   text-align: center;
+  padding: 10px;
+  background-color: #f8d7da;
+  border-radius: 4px;
 }
 
-@media (max-width: 600px) {
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
+/* Responsive Design */
+@media (max-width: 768px) {
+  .offers-table-container {
+    margin: 10px -12px;
+    border-radius: 0;
+  }
+
+  table {
     display: block;
   }
 
-  thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
+  th {
+    display: none;
   }
 
   tr {
-    border: 1px solid #ccc;
+    display: block;
+    border: 1px solid #dee2e6;
     margin-bottom: 10px;
+    background: white;
   }
 
   td {
+    display: flex;
+    padding: 8px 12px;
     border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 50%;
+    align-items: center;
   }
 
-  td:before {
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    content: attr(data-title);
-    font-weight: bold;
+  td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    width: 120px;
+    min-width: 120px;
+    color: #666;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+  }
+
+  .cell-content {
+    flex: 1;
+    padding-left: 12px;
+  }
+
+  .action-buttons {
+    margin-left: 120px;
   }
 }

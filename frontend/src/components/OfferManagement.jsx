@@ -228,75 +228,77 @@ function OfferManagement() {
         </div>
       </form>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Zdjęcie</th>
-            <th>Opis</th>
-            <th>Etykieta</th>
-            <th>Oferta</th>
-            <th className="description-cell">Opis 1</th>
-            <th className="description-cell">Opis 2</th>
-            <th className="description-cell">Opis 3</th>
-            <th>Bestseller</th>
-            <th>Akcje</th>
-          </tr>
-        </thead>
-        <tbody>
-          {offers.map((offer) => (
-            <tr key={offer._id}>
-              <td>
-                <div className="content-div">
-                  <img
-                    className="offer-management-img"
-                    src={offer.src}
-                    alt="Offer"
-                  />
-                </div>
-              </td>
-              <td>
-                <div className="content-div">{offer.text}</div>
-              </td>
-              <td>
-                <div className="content-div">{offer.label}</div>
-              </td>
-              <td>
-                <div className="content-div">{offer.offer}</div>
-              </td>
-              <td>
-                <div className="description-cell">{offer.description1}</div>
-              </td>
-              <td>
-                <div className="description-cell">{offer.description2}</div>
-              </td>
-              <td>
-                <div className="description-cell">{offer.description3}</div>
-              </td>
-              <td>
-                <div className="content-div">
-                  {offer.bestSeller ? "Tak" : "Nie"}
-                </div>
-              </td>
-              <td>
-                <div className="action-buttons">
-                  <button
-                    type="button"
-                    onClick={() => handleEditClick(offer)}
-                  >
-                    Edytuj
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleDeleteOffer(offer._id)}
-                  >
-                    Usuń
-                  </button>
-                </div>
-              </td>
+      <div className="offers-table-container">
+        <table>
+          <thead>
+            <tr>
+              <th className="col-image">Zdjęcie</th>
+              <th className="col-text">Opis</th>
+              <th className="col-label">Etykieta</th>
+              <th className="col-offer">Oferta</th>
+              <th className="col-description">Opis 1</th>
+              <th className="col-description">Opis 2</th>
+              <th className="col-description">Opis 3</th>
+              <th className="col-bestseller">Bestseller</th>
+              <th className="col-actions">Akcje</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {offers.map((offer) => (
+              <tr key={offer._id}>
+                <td data-label="Zdjęcie">
+                  <div className="cell-content">
+                    <img
+                      className="offer-management-img"
+                      src={offer.src}
+                      alt="Offer"
+                    />
+                  </div>
+                </td>
+                <td data-label="Opis">
+                  <div className="cell-content">{offer.text}</div>
+                </td>
+                <td data-label="Etykieta">
+                  <div className="cell-content">{offer.label}</div>
+                </td>
+                <td data-label="Oferta">
+                  <div className="cell-content">{offer.offer}</div>
+                </td>
+                <td data-label="Opis 1">
+                  <div className="cell-content">{offer.description1}</div>
+                </td>
+                <td data-label="Opis 2">
+                  <div className="cell-content">{offer.description2}</div>
+                </td>
+                <td data-label="Opis 3">
+                  <div className="cell-content">{offer.description3}</div>
+                </td>
+                <td data-label="Bestseller">
+                  <div className="cell-content">
+                    {offer.bestSeller ? "Tak" : "Nie"}
+                  </div>
+                </td>
+                <td data-label="Akcje">
+                  <div className="action-buttons">
+                    <button
+                      type="button"
+                      onClick={() => handleEditClick(offer)}
+                    >
+                      Edytuj
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteOffer(offer._id)}
+                    >
+                      Usuń
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
