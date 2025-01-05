@@ -5,10 +5,9 @@ function ReservationSystem() {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState(null);
 
-  // function to calculate the start of the week
   const startOfWeek = (date) => {
     const diff =
-      date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1); // Adjust if your week starts on Sunday
+      date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
     return new Date(date.setDate(diff));
   };
 
@@ -65,7 +64,6 @@ function ReservationSystem() {
     );
   };
 
-  // Map bookings to the corresponding day of the week
   const getDayOfWeekIndex = (dateString) => {
     const date = new Date(dateString);
     return date.getDay();
@@ -81,14 +79,12 @@ function ReservationSystem() {
     "Sobota",
   ];
 
-  // Generate the dates for the current week
   const weekDates = weekDays.map((_, index) => {
     const day = new Date(currentWeekStart);
     day.setDate(day.getDate() + index);
-    return getFormattedDate(day); // This ensures the format matches your API
+    return getFormattedDate(day);
   });
 
-  // Group bookings by each day
   const bookingsByDay = weekDates.map((date) => {
     return bookings.filter(
       (booking) => getFormattedDate(new Date(booking.date)) === date
@@ -106,20 +102,24 @@ function ReservationSystem() {
       <div className="week-grid">
         {weekDays.map((day, index) => {
           const date = weekDates[index];
+          const isToday = date === getFormattedDate(new Date());
           return (
-            <div key={day} className="day-column">
+            <div key={day} className={`day-column ${isToday ? 'today' : ''}`}>
               <div className="day-header">
-                {day} <br /> {date}
+                <div className="day-name">{day}</div>
+                <div className="day-date">{date}</div>
               </div>
-              {bookingsByDay[index].map((booking) => (
-                <div key={booking._id} className="booking-entry">
-                  <div>
-                    {booking.firstName} {booking.lastName}
+              <div className="bookings-container">
+                {bookingsByDay[index].map((booking) => (
+                  <div key={booking._id} className="booking-entry">
+                    <div className="booking-time">{booking.time}</div>
+                    <div className="booking-name">
+                      {booking.firstName} {booking.lastName}
+                    </div>
+                    <div className="booking-email">{booking.email}</div>
                   </div>
-                  <div>{booking.time}</div>
-                  <div>{booking.email}</div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           );
         })}
