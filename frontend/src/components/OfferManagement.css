@@ -1,17 +1,34 @@
-/*.offer-management-container {
+.offer-management-container {
   padding: 12px;
-  max-width: 512px;
+  max-width: 1200px;
   margin: 0 auto;
   text-align: center;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
 }
-*/
+
 .offer-mg-title {
   margin: 32px 0 16px 0;
+}
+
+.profile-form {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.profile-form input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .offer-action-button {
@@ -21,13 +38,24 @@
   border-radius: 6px;
   text-transform: uppercase;
   margin-bottom: 8px;
+  border: none;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.offer-action-button.cancel {
+  background-color: #6c757d;
+}
+
+.offer-action-button:hover {
+  opacity: 0.9;
 }
 
 table {
   border-collapse: collapse;
-  width: 100%; /* Use the full width available */
-  table-layout: fixed; /* Ensures the table respects the width of the columns */
-  margin: 0 auto; /* Center the table */
+  width: 100%;
+  table-layout: fixed;
+  margin: 0 auto;
 }
 
 th,
@@ -43,13 +71,41 @@ th {
 }
 
 .offer-management-img {
-  width: auto; /* Maintain aspect ratio */
-  height: 50px; /* Adjust as needed */
-  display: block; /* Remove additional space below the image */
-  margin: 0 auto; /* Center the image */
+  width: auto;
+  height: 50px;
+  display: block;
+  margin: 0 auto;
 }
 
-/* Responsive table adjustments */
+.content-div {
+  word-wrap: break-word;
+}
+
+.description-cell {
+  word-wrap: break-word;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.action-buttons button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: rgb(28, 27, 27);
+  color: white;
+}
+
+.error-message {
+  color: #dc3545;
+  margin: 10px 0;
+  text-align: center;
+}
+
 @media (max-width: 600px) {
   table,
   thead,
@@ -68,10 +124,10 @@ th {
 
   tr {
     border: 1px solid #ccc;
+    margin-bottom: 10px;
   }
 
   td {
-    /* Behave like a "row" */
     border: none;
     border-bottom: 1px solid #eee;
     position: relative;
@@ -79,18 +135,13 @@ th {
   }
 
   td:before {
-    /* Now like a table header */
     position: absolute;
-    /* Top/left values mimic padding */
     top: 6px;
     left: 6px;
     width: 45%;
     padding-right: 10px;
     white-space: nowrap;
-    /* Label the data */
     content: attr(data-title);
     font-weight: bold;
   }
 }
-
-/* Ensure the sum of the widths does not exceed the table width */
