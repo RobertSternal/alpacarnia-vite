@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon server/index.js",
     "start": "node server/index.js",
-    "build": "node server/index.js"
+    "build": "echo \"Build completed\" && exit 0"
   },
   "keywords": [],
   "author": "",
