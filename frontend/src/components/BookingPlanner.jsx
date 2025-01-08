@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./BookingPlanner.css";
+import { useSelector } from "react-redux";
 
 function ReservationSystem() {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState(null);
+  const [availableSlots, setAvailableSlots] = useState([]);
+  const { currentUser } = useSelector((state) => state.user);
+  const [formData, setFormData] = useState({
+    firstName: currentUser?.username || "",
+    lastName: "",
+    amountPeople: 1,
+    email: currentUser?.email || "",
+    phone: "",
+    date: "",
+    time: ""
+  });
 
   const startOfWeek = (date) => {
     const diff =
@@ -20,6 +32,49 @@ function ReservationSystem() {
       2,
       "0"
     )}-${String(date.getDate()).padStart(2, "0")}`;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(`${process.env.REACT_APP_SERVER}/server/booking/add`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+      
+      if (!res.ok) {
+        setError(data.message || 'Something went wrong!');
+        return;
+      }
+
+      setFormData({
+        firstName: currentUser?.username || "",
+        lastName: "",
+        amountPeople: 1,
+        email: currentUser?.email || "",
+        phone: "",
+        date: "",
+        time: ""
+      });
+      setError(null);
+      alert('Booking successful!');
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   useEffect(() => {
@@ -91,6 +146,27 @@ function ReservationSystem() {
     );
   });
 
+  useEffect(() => {
+    const checkAvailability = async () => {
+      if (formData.date) {
+        try {
+          const res = await fetch(
+            `${process.env.REACT_APP_SERVER}/server/booking/available-slots/${formData.date}`,
+            {
+              credentials: 'include'
+            }
+          );
+          const data = await res.json();
+          setAvailableSlots(data.availableSlots || []);
+        } catch (err) {
+          console.error('Error checking availability:', err);
+        }
+      }
+    };
+
+    checkAvailability();
+  }, [formData.date]);
+
   return (
     <div className="reservation-system">
       <h1 className="booking-planner-title">Dokonane rezerwacje</h1>
@@ -123,6 +199,75 @@ function ReservationSystem() {
             </div>
           );
         })}
+      </div>
+
+      <div className="reservation-container">
+        <h2>Make a Reservation</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={formData.firstName}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={formData.lastName}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="number"
+            name="amountPeople"
+            placeholder="Number of People"
+            value={formData.amountPeople}
+            onChange={handleInputChange}
+            min="1"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            value={formData.phone}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleInputChange}
+            required
+          />
+          <select
+            name="time"
+            value={formData.time}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="">Select Time</option>
+            {availableSlots.map((slot, index) => (
+              <option key={index} value={slot}>
+                {slot}
+              </option>
+            ))}
+          </select>
+          
+          <button type="submit">Make Reservation</button>
+        </form>
       </div>
     </div>
   );
