@@ -46,6 +46,8 @@ export default function ProfileComp() {
       if (currentUser) {
         // Only fetch bookings if there's a logged-in user
         try {
+          console.log('Fetching bookings for user:', currentUser._id);
+          console.log('Server URL:', process.env.REACT_APP_SERVER);
           const response = await fetch(
             `${process.env.REACT_APP_SERVER}/server/booking/user/${currentUser._id}`,
             {
@@ -56,10 +58,14 @@ export default function ProfileComp() {
               },
             }
           );
+          console.log('Response status:', response.status);
           if (!response.ok) {
-            throw new Error("Failed to fetch bookings");
+            const errorData = await response.text();
+            console.error('Error response:', errorData);
+            throw new Error(`Failed to fetch bookings: ${errorData}`);
           }
           const data = await response.json();
+          console.log('Fetched bookings:', data);
           setBookings(data);
         } catch (error) {
           console.error("Error fetching bookings:", error);
